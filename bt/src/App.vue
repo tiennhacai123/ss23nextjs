@@ -23,7 +23,7 @@
             <td>{{ student.phone }}</td>
             <td>
               <v-btn class="bg-warning">Edit</v-btn>
-              <v-btn class="bg-error">Delete</v-btn>
+              <v-btn @click="deleteUser(user.id)" class="bg-error">Delete</v-btn>
             </td>
           </tr>
         </tbody>
@@ -48,6 +48,11 @@ const getData = async () => {
   students.value = data.data;
 };
 
+
+const deleteUser = async (id) => {
+  await axios.delete(`http://localhost:3000/students/${id}`);
+  getData();
+}
 onMounted(() => {
   getData();
 });
