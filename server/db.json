@@ -1,0 +1,67 @@
+{
+    "students": [
+        {
+            "id": 1,
+            "student_name": "Nguyen Van A",
+            "email": "nguyenvana@example.com",
+            "address": "123 Le Loi, Ha Noi",
+            "phone": "0123456789",
+            "status": true,
+            "created_at": "2024-1-10"
+        },
+        {
+            "id": 2,
+            "student_name": "Tran Thi B",
+            "email": "tranthib@example.com",
+            "address": "45 Hoang Hoa Tham, Da Nang",
+            "phone": "0987654321",
+            "status": false,
+            "created_at": "2024-10-12"      
+        },
+        {
+            "id": 3,
+            "student_name": "Le Van C",
+            "email": "levanc@example.com",
+            "address": "67 Phan Chu Trinh, Hue",
+            "phone": "0321654987",
+            "status": true,
+            "created_at": "2024-3-22"
+        },
+        {
+            "id": 4,
+            "student_name": "Pham Thi D",
+            "email": "phamthid@example.com",
+            "address": "89 Nguyen Trai, Ho Chi Minh",
+            "phone": "0943567890",
+            "status": false,
+            "created_at": "2024-4-12"
+        },
+        {
+            "id": 5,
+            "student_name": "Hoang Van E",
+            "email": "hoangvane@example.com",
+            "address": "56 Tran Phu, Hai Phong",
+            "phone": "0354789652",
+            "status": true,
+            "created_at": "2024-5-18"
+        },
+        {
+            "id": 6,
+            "student_name": "Vu Thi F",
+            "email": "vuthif@example.com",
+            "address": "78 Hai Ba Trung, Can Tho",
+            "phone": "0928347561",
+            "status": true,
+            "created_at": "2024-6-30"
+        },
+        {
+            "id": 7,
+            "student_name": "Bui Van G",
+            "email": "buivang@example.com",
+            "address": "90 Le Thanh Tong, Nha Trang",
+            "phone": "0379456231",
+            "status": false,
+            "created_at": "2024-7-22"
+        }
+    ]
+}
