@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="isOpen" max-width="500px">
+  <v-dialog v-model="localIsOpen" max-width="500px">
     <v-card>
       <v-card-title>
         <span class="text-h6">Thêm mới học sinh</span>
@@ -18,10 +18,7 @@
             :rules="[rules.email]"
             required
           />
-          <v-text-field
-            v-model="newStudent.address"
-            label="Địa chỉ"
-          />
+          <v-text-field v-model="newStudent.address" label="Địa chỉ" />
           <v-text-field
             v-model="newStudent.phone"
             label="Số điện thoại"
@@ -40,48 +37,62 @@
 </template>
 
 <script setup>
-import { ref, defineProps, defineEmits } from 'vue';
-import axios from 'axios';
+import { ref, watch, defineProps, defineEmits } from "vue";
+import axios from "axios";
 
 const props = defineProps({
   isOpen: Boolean,
 });
 
-const emit = defineEmits(['close']);
+const emit = defineEmits(["update:isOpen", "close", "updated"]);
+
+const localIsOpen = ref(props.isOpen);
+
+watch(
+  () => props.isOpen,
+  (newVal) => {
+    localIsOpen.value = newVal;
+  }
+);
+
+watch(localIsOpen, (newVal) => {
+  emit("update:isOpen", newVal);
+});
 
 const newStudent = ref({
-  student_name: '',
-  email: '',
-  address: '',
-  phone: '',
+  student_name: "",
+  email: "",
+  address: "",
+  phone: "",
 });
 
 const rules = {
-  required: value => !!value || 'Trường này là bắt buộc!',
-  email: value => {
+  required: (value) => !!value || "Trường này là bắt buộc!",
+  email: (value) => {
     const emailPattern = /^[^@]+@[^@]+\.[^@]+$/;
-    return emailPattern.test(value) || 'Email không hợp lệ!';
+    return emailPattern.test(value) || "Email không hợp lệ!";
   },
-  phone: value => {
+  phone: (value) => {
     const phonePattern = /^[0-9]{10,12}$/;
-    return phonePattern.test(value) || 'Số điện thoại không hợp lệ!';
+    return phonePattern.test(value) || "Số điện thoại không hợp lệ!";
   },
 };
 
 const submit = async () => {
   try {
     await axios.post("http://localhost:3000/students", newStudent.value);
-    emit('close'); // Close the modal after submission
-    newStudent.value = {}; // Clear the form
+    emit("close");
+    newStudent.value = {};
   } catch (error) {
     console.error("Error adding student:", error);
   }
+  emit("updated");
 };
 
 const close = () => {
-  emit('close');
+  emit("close");
+  localIsOpen.value = false; // Close the dialog
 };
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>
